@@ -165,7 +165,7 @@
 		48DA309D2C1204C200E26FC5 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				48DA30B12C120A1F00E26FC5 /* ViewModel */,
+				48DA30B42C1211EA00E26FC5 /* ViewModel */,
 				48DA30AF2C1209BC00E26FC5 /* View */,
 			);
 			path = Presentation;
@@ -215,7 +215,7 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		48DA30B12C120A1F00E26FC5 /* ViewModel */ = {
+		48DA30B42C1211EA00E26FC5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 			);
