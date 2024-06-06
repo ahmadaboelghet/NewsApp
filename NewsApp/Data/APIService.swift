@@ -10,7 +10,7 @@ import Alamofire
 import Combine
 
 class APIService {
-    private let apiKey = "YOUR_API_KEY"
+    private let apiKey = "39bdc2d32e5948dd947ce51449032cda"
 
     func fetchHeadlines(for country: String, categories: [String]) -> AnyPublisher<[Article], Error> {
         let categoriesString = categories.joined(separator: ",")
