@@ -27,4 +27,20 @@ class APIService {
             }
         }.eraseToAnyPublisher()
     }
+    
+    func searchArticles(query: String, categories: [String]) -> AnyPublisher<[Article], Error> {
+        let categoriesString = categories.joined(separator: ",")
+        let urlString = "https://newsapi.org/v2/everything?q=\(query)&category=\(categoriesString)&apiKey=\(apiKey)"
+        
+        return Future { promise in
+            AF.request(urlString).responseDecodable(of: NewsResponse.self) { response in
+                switch response.result {
+                case .success(let newsResponse):
+                    promise(.success(newsResponse.articles))
+                case .failure(let error):
+                    promise(.failure(error))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
 }

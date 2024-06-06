@@ -37,4 +37,8 @@ class NewsRepositoryImpl: NewsRepository {
     func getFavorites() -> [Article] {
         return realm.objects(FavoriteArticle.self).map { $0.toArticle() }
     }
+    
+    func searchArticles(query: String, categories: [String]) -> AnyPublisher<[Article], Error> {
+        return apiService.searchArticles(query: query, categories: categories)
+    }
 }
