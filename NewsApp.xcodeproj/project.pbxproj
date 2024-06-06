@@ -32,6 +32,8 @@
 		48DA30C02C1220CF00E26FC5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30BF2C1220CF00E26FC5 /* MainViewModel.swift */; };
 		48DA30C42C1222E200E26FC5 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48DA30C32C1222E200E26FC5 /* SearchViewController.xib */; };
 		48DA30C52C1222E200E26FC5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30C22C1222E200E26FC5 /* SearchViewController.swift */; };
+		48DA30C72C122A7D00E26FC5 /* SearchArticlesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30C62C122A7D00E26FC5 /* SearchArticlesUseCase.swift */; };
+		48DA30C92C122F9D00E26FC5 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30C82C122F9D00E26FC5 /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		48DA30BF2C1220CF00E26FC5 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		48DA30C22C1222E200E26FC5 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		48DA30C32C1222E200E26FC5 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		48DA30C62C122A7D00E26FC5 /* SearchArticlesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArticlesUseCase.swift; sourceTree = "<group>"; };
+		48DA30C82C122F9D00E26FC5 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +203,7 @@
 				48DA30A82C12083000E26FC5 /* FetchHeadlinesUseCase.swift */,
 				48DA30B22C120AD600E26FC5 /* SaveFavoriteArticleUseCase.swift */,
 				48DA30AC2C1208EB00E26FC5 /* GetFavoriteArticlesUseCase.swift */,
+				48DA30C62C122A7D00E26FC5 /* SearchArticlesUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				48DA30BF2C1220CF00E26FC5 /* MainViewModel.swift */,
+				48DA30C82C122F9D00E26FC5 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -416,12 +422,14 @@
 				48DA30622C11FF1000E26FC5 /* AppDelegate.swift in Sources */,
 				48DA30A42C1206AF00E26FC5 /* FavoriteArticle.swift in Sources */,
 				48DA309F2C12052700E26FC5 /* APIService.swift in Sources */,
+				48DA30C92C122F9D00E26FC5 /* SearchViewModel.swift in Sources */,
 				48DA30A62C1207B800E26FC5 /* Entities.swift in Sources */,
 				48DA30642C11FF1000E26FC5 /* SceneDelegate.swift in Sources */,
 				48DA30C52C1222E200E26FC5 /* SearchViewController.swift in Sources */,
 				48DA30B92C121FE900E26FC5 /* OnboardingViewController.swift in Sources */,
 				48DA30A92C12083000E26FC5 /* FetchHeadlinesUseCase.swift in Sources */,
 				48DA30A12C12062A00E26FC5 /* NewsRepository.swift in Sources */,
+				48DA30C72C122A7D00E26FC5 /* SearchArticlesUseCase.swift in Sources */,
 				48DA30C02C1220CF00E26FC5 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,6 +13,7 @@ protocol NewsRepository {
     func getHeadlines(for country: String, categories: [String]) -> AnyPublisher<[Article], Error>
     func saveFavorite(article: Article)
     func getFavorites() -> [Article]
+    func searchArticles(query: String, categories: [String]) -> AnyPublisher<[Article], Error>
 }
 
 class NewsRepositoryImpl: NewsRepository {
