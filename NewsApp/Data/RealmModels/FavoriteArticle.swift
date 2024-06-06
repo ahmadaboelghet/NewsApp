@@ -21,7 +21,7 @@ class FavoriteArticle: Object {
         self.date = article.publishedAt
         self.imageUrl = article.urlToImage ?? ""
         self.source = article.source.name
-        self.descriptionText = article.description
+        self.descriptionText = article.description ?? ""
     }
 
     func toArticle() -> Article {
