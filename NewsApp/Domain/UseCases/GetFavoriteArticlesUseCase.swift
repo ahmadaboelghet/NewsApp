@@ -6,3 +6,16 @@
 //
 
 import Foundation
+import Combine
+
+class GetFavoriteArticlesUseCase {
+    private let repository: NewsRepository
+
+    init(repository: NewsRepository) {
+        self.repository = repository
+    }
+
+    func execute() -> [Article] {
+        return repository.getFavorites()
+    }
+}
