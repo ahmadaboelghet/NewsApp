@@ -34,6 +34,8 @@
 		48DA30C52C1222E200E26FC5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30C22C1222E200E26FC5 /* SearchViewController.swift */; };
 		48DA30C72C122A7D00E26FC5 /* SearchArticlesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30C62C122A7D00E26FC5 /* SearchArticlesUseCase.swift */; };
 		48DA30C92C122F9D00E26FC5 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30C82C122F9D00E26FC5 /* SearchViewModel.swift */; };
+		48DA30D02C1230FC00E26FC5 /* HeadlineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48DA30CF2C1230FC00E26FC5 /* HeadlineTableViewCell.xib */; };
+		48DA30D12C1230FC00E26FC5 /* HeadlineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30CE2C1230FC00E26FC5 /* HeadlineTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		48DA30C32C1222E200E26FC5 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		48DA30C62C122A7D00E26FC5 /* SearchArticlesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArticlesUseCase.swift; sourceTree = "<group>"; };
 		48DA30C82C122F9D00E26FC5 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		48DA30CE2C1230FC00E26FC5 /* HeadlineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineTableViewCell.swift; sourceTree = "<group>"; };
+		48DA30CF2C1230FC00E26FC5 /* HeadlineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeadlineTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +224,7 @@
 		48DA30AF2C1209BC00E26FC5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				48DA30CA2C12309E00E26FC5 /* Cells */,
 				48DA30C12C1222A300E26FC5 /* SearchController */,
 				48DA30BA2C12205800E26FC5 /* MainController */,
 				48DA30B52C121F7300E26FC5 /* OnboardingController */,
@@ -271,6 +276,23 @@
 				48DA30C32C1222E200E26FC5 /* SearchViewController.xib */,
 			);
 			path = SearchController;
+			sourceTree = "<group>";
+		};
+		48DA30CA2C12309E00E26FC5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				48DA30CD2C1230CE00E26FC5 /* HeadlineCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		48DA30CD2C1230CE00E26FC5 /* HeadlineCell */ = {
+			isa = PBXGroup;
+			children = (
+				48DA30CE2C1230FC00E26FC5 /* HeadlineTableViewCell.swift */,
+				48DA30CF2C1230FC00E26FC5 /* HeadlineTableViewCell.xib */,
+			);
+			path = HeadlineCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,6 +412,7 @@
 				48DA306B2C11FF1200E26FC5 /* Assets.xcassets in Resources */,
 				48DA306E2C11FF1200E26FC5 /* Base in Resources */,
 				48DA30B82C121FE900E26FC5 /* OnboardingViewController.xib in Resources */,
+				48DA30D02C1230FC00E26FC5 /* HeadlineTableViewCell.xib in Resources */,
 				48DA30C42C1222E200E26FC5 /* SearchViewController.xib in Resources */,
 				48DA30BD2C12207B00E26FC5 /* MainViewController.xib in Resources */,
 			);
@@ -419,6 +442,7 @@
 				48DA30AD2C1208EB00E26FC5 /* GetFavoriteArticlesUseCase.swift in Sources */,
 				48DA30BE2C12207B00E26FC5 /* MainViewController.swift in Sources */,
 				48DA30B32C120AD600E26FC5 /* SaveFavoriteArticleUseCase.swift in Sources */,
+				48DA30D12C1230FC00E26FC5 /* HeadlineTableViewCell.swift in Sources */,
 				48DA30622C11FF1000E26FC5 /* AppDelegate.swift in Sources */,
 				48DA30A42C1206AF00E26FC5 /* FavoriteArticle.swift in Sources */,
 				48DA309F2C12052700E26FC5 /* APIService.swift in Sources */,

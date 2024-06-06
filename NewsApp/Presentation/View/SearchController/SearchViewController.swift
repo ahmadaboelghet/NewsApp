@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
-    private var viewModel: SearchViewModel!
+    var viewModel: SearchViewModel!
     private var cancellables = Set<AnyCancellable>()
 
     private let searchBar = UISearchBar()
