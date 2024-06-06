@@ -14,6 +14,7 @@ class FavoriteArticle: Object {
     @objc dynamic var imageUrl = ""
     @objc dynamic var source = ""
     @objc dynamic var descriptionText = ""
+    @objc dynamic var url = ""
 
     convenience init(article: Article) {
         self.init()
@@ -22,9 +23,10 @@ class FavoriteArticle: Object {
         self.imageUrl = article.urlToImage ?? ""
         self.source = article.source.name
         self.descriptionText = article.description ?? ""
+        self.url = article.url
     }
 
     func toArticle() -> Article {
-        return Article(title: title, publishedAt: date, urlToImage: imageUrl, source: Source(name: source), description: descriptionText)
+        return Article(title: title, publishedAt: date, urlToImage: imageUrl, source: Source(name: source), description: descriptionText, url: url)
     }
 }
