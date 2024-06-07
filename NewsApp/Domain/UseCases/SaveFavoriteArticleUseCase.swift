@@ -5,6 +5,21 @@
 //  Created by Ahmad Aboelghet on 06/06/2024.
 //
 
+//import Foundation
+//import Combine
+//
+//class SaveFavoriteArticleUseCase {
+//    private let repository: NewsRepository
+//
+//    init(repository: NewsRepository) {
+//        self.repository = repository
+//    }
+//
+//    func execute(article: Article) -> AnyPublisher<Void, Error> {
+//        return repository.saveFavoriteArticle(article)
+//    }
+//}
+
 import Foundation
 import Combine
 

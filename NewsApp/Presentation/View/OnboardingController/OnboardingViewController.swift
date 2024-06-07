@@ -65,7 +65,9 @@ class OnboardingViewController: UIViewController, UIPickerViewDelegate, UIPicker
         let apiService = APIService()
         let repository = NewsRepositoryImpl(apiService: apiService)
         let fetchHeadlinesUseCase = FetchHeadlinesUseCase(repository: repository)
-        let mainViewModel = MainViewModel(fetchHeadlinesUseCase: fetchHeadlinesUseCase)
+        let saveFavoriteArticleUseCase = SaveFavoriteArticleUseCase(repository: repository)
+        let getFavoriteArticlesUseCase = GetFavoriteArticlesUseCase(repository: repository)
+        let mainViewModel = MainViewModel(getHeadlinesUseCase: fetchHeadlinesUseCase, saveFavoriteArticleUseCase: saveFavoriteArticleUseCase, getFavoriteArticlesUseCase: getFavoriteArticlesUseCase)
         let mainVC = MainViewController(viewModel: mainViewModel)
         navigationController?.pushViewController(mainVC, animated: true)
     }

@@ -24,7 +24,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let apiService = APIService()
             let repository = NewsRepositoryImpl(apiService: apiService)
             let fetchHeadlinesUseCase = FetchHeadlinesUseCase(repository: repository)
-            let mainViewModel = MainViewModel(fetchHeadlinesUseCase: fetchHeadlinesUseCase)
+            let saveFavoriteArticleUseCase = SaveFavoriteArticleUseCase(repository: repository)
+            let getFavoriteArticlesUseCase = GetFavoriteArticlesUseCase(repository: repository)
+            let mainViewModel = MainViewModel(getHeadlinesUseCase: fetchHeadlinesUseCase, saveFavoriteArticleUseCase: saveFavoriteArticleUseCase, getFavoriteArticlesUseCase: getFavoriteArticlesUseCase)
             rootViewController = MainViewController(viewModel: mainViewModel)
         }
         
