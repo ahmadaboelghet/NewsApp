@@ -51,7 +51,7 @@ class NewsRepositoryTests: XCTestCase {
 import Combine
 
 class APIServiceMock: APIService {
-    override func fetchHeadlines(for country: String, categories: [String]) -> AnyPublisher<[Article], any Error> {
+    override func fetchHeadlines(for country: String, categories: [String]?) -> AnyPublisher<[Article], any Error> {
         let source = Source(name: "Test Source")
         let articles = [
             Article(
@@ -68,7 +68,7 @@ class APIServiceMock: APIService {
             .eraseToAnyPublisher()
     }
     
-    override func searchArticles(query: String, categories: [String]) -> AnyPublisher<[Article], Error> {
+    override func searchArticles(query: String, categories: [String]?) -> AnyPublisher<[Article], Error> {
             let source = Source(name: "Test Source")
             let articles = [
                 Article(
