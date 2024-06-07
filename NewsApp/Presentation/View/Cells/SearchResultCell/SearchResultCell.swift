@@ -85,7 +85,7 @@ class SearchResultCell: UITableViewCell {
     func configure(with article: Article) {
         titleLabel.text = article.title
         dateLabel.text = article.publishedAt
-        sourceLabel.text = article.source.name
+        sourceLabel.text = article.source?.name
         descriptionLabel.text = article.description
         if let url = URL(string: article.urlToImage ?? "") {
             resultImageView.loadImage(from: url)

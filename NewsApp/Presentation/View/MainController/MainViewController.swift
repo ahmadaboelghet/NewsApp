@@ -94,7 +94,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let article = viewModel.headlines[indexPath.row]
-        if let url = URL(string: article.url) {
+        if let url = URL(string: article.url ?? "") {
             UIApplication.shared.open(url)
         }
     }

@@ -85,7 +85,7 @@ class HeadlineCell: UITableViewCell {
     func configure(with headline: Article) {
         titleLabel.text = headline.title
         dateLabel.text = headline.publishedAt
-        sourceLabel.text = headline.source.name
+        sourceLabel.text = headline.source?.name
         descriptionLabel.text = headline.description
         if let url = URL(string: headline.urlToImage ?? "") {
             headlineImageView.loadImage(from: url)

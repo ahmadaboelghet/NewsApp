@@ -6,30 +6,40 @@
 //
 
 import XCTest
+@testable import NewsApp
+import Combine
 
-final class SearchViewModelTests: XCTestCase {
+class SearchViewModelTests: XCTestCase {
+    var viewModel: SearchViewModel!
+    var repository: NewsRepositoryMock!
+    var cancellables: Set<AnyCancellable>!
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
+        super.setUp()
+        repository = NewsRepositoryMock()
+        viewModel = SearchViewModel(searchArticlesUseCase: SearchArticlesUseCase(repository: repository))
+        cancellables = []
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        viewModel = nil
+        repository = nil
+        cancellables = nil
+        super.tearDown()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+    func testSearchArticles() {
+        let expectation = self.expectation(description: "Search articles in ViewModel")
+        
+        viewModel.$searchResults
+            .dropFirst()
+            .sink(receiveValue: { articles in
+                XCTAssertTrue(articles.isEmpty, "Search results should be empty")
+                expectation.fulfill()
+            })
+            .store(in: &cancellables)
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        viewModel.searchArticles(query: "test")
+        waitForExpectations(timeout: 5, handler: nil)
     }
-
 }

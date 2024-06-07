@@ -18,12 +18,12 @@ class FavoriteArticle: Object {
 
     convenience init(article: Article) {
         self.init()
-        self.title = article.title
-        self.date = article.publishedAt
+        self.title = article.title ?? ""
+        self.date = article.publishedAt ?? ""
         self.imageUrl = article.urlToImage ?? ""
-        self.source = article.source.name
+        self.source = article.source?.name ?? ""
         self.descriptionText = article.description ?? ""
-        self.url = article.url
+        self.url = article.url ?? ""
     }
 
     func toArticle() -> Article {

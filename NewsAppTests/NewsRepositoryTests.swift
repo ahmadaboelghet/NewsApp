@@ -6,30 +6,82 @@
 //
 
 import XCTest
+@testable import NewsApp
+import Combine
 
-final class NewsRepositoryTests: XCTestCase {
+class NewsRepositoryTests: XCTestCase {
+    var repository: NewsRepositoryImpl!
+    var apiService: APIServiceMock!
+    var cancellables: Set<AnyCancellable>!
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
+        super.setUp()
+        apiService = APIServiceMock()
+        repository = NewsRepositoryImpl(apiService: apiService)
+        cancellables = []
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        repository = nil
+        apiService = nil
+        cancellables = nil
+        super.tearDown()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+    func testFetchHeadlines() {
+        let expectation = self.expectation(description: "Fetch headlines from repository")
+        var articles: [Article] = []
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        repository.fetchHeadlines(country: "us", categories: ["business"])
+            .sink(receiveCompletion: { completion in
+                if case .failure(let error) = completion {
+                    XCTFail("Failed with error: \(error)")
+                }
+            }, receiveValue: { fetchedArticles in
+                articles = fetchedArticles
+                expectation.fulfill()
+            })
+            .store(in: &cancellables)
+
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertFalse(articles.isEmpty, "Articles should not be empty")
+    }
+}
+
+import Combine
+
+class APIServiceMock: APIService {
+    override func fetchHeadlines(for country: String, categories: [String]) -> AnyPublisher<[Article], any Error> {
+        let source = Source(name: "Test Source")
+        let articles = [
+            Article(
+                title: "Test Article",
+                publishedAt: "2024-06-06T12:00:00Z",
+                urlToImage: "https://test.com/image.jpg",
+                source: source,
+                description: "This is a test article.",
+                url: "https://test.com"
+            )
+        ]
+        return Just(articles)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+    
+    override func searchArticles(query: String, categories: [String]) -> AnyPublisher<[Article], Error> {
+            let source = Source(name: "Test Source")
+            let articles = [
+                Article(
+                    title: "Test Article",
+                    publishedAt: "2024-06-06T12:00:00Z",
+                    urlToImage: "https://test.com/image.jpg",
+                    source: source,
+                    description: "This is a test article.",
+                    url: "https://test.com"
+                )
+            ]
+            return Just(articles)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
         }
-    }
-
 }

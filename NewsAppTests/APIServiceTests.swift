@@ -6,30 +6,41 @@
 //
 
 import XCTest
+@testable import NewsApp
+import Combine
 
-final class APIServiceTests: XCTestCase {
+class APIServiceTests: XCTestCase {
+    var apiService: APIService!
+    var cancellables: Set<AnyCancellable>!
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
+        super.setUp()
+        apiService = APIService()
+        cancellables = []
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        apiService = nil
+        cancellables = nil
+        super.tearDown()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+    func testFetchHeadlinesSuccess() {
+        let expectation = self.expectation(description: "Fetch headlines successfully")
+        var articles: [Article] = []
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+        apiService.fetchHeadlines(for: "us", categories: ["business"])
+            .sink(receiveCompletion: { completion in
+                if case .failure(let error) = completion {
+                    XCTFail("Failed with error: \(error)")
+                }
+            }, receiveValue: { fetchedArticles in
+                articles = fetchedArticles
+                expectation.fulfill()
+            })
+            .store(in: &cancellables)
 
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertFalse(articles.isEmpty, "Articles should not be empty")
+    }
 }

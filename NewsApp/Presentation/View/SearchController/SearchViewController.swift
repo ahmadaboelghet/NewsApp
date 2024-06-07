@@ -35,7 +35,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SearchResultCell")
+        tableView.register(SearchResultCell.self, forCellReuseIdentifier: "SearchResultCell")
 
         // Set constraints
         NSLayoutConstraint.activate([
@@ -71,15 +71,15 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as! SearchResultCell
         let article = viewModel.searchResults[indexPath.row]
-        cell.textLabel?.text = article.title
+        cell.configure(with: article)
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let article = viewModel.searchResults[indexPath.row]
-        if let url = URL(string: article.url) {
+        if let url = URL(string: article.url ?? "") {
             UIApplication.shared.open(url)
         }
     }
