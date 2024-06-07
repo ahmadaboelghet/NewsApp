@@ -17,7 +17,7 @@ class MainViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         repository = NewsRepositoryMock()
-        viewModel = MainViewModel(fetchHeadlinesUseCase: FetchHeadlinesUseCase(repository: repository))
+        viewModel = MainViewModel(getHeadlinesUseCase: FetchHeadlinesUseCase(repository: repository), saveFavoriteArticleUseCase: SaveFavoriteArticleUseCase(repository: repository), getFavoriteArticlesUseCase: GetFavoriteArticlesUseCase(repository: repository))
         cancellables = []
     }
     
@@ -39,14 +39,14 @@ class MainViewModelTests: XCTestCase {
             })
             .store(in: &cancellables)
         
-        viewModel.fetchHeadlines()
+        viewModel.fetchHeadlines(country: "us", categories: ["business"])
         waitForExpectations(timeout: 5, handler: nil)
     }
 }
 
 class NewsRepositoryMock: NewsRepository {
-    
-    func fetchHeadlines(country: String, categories: [String]) -> AnyPublisher<[NewsApp.Article], any Error> {
+
+    func getHeadlines(country: String, categories: [String]) -> AnyPublisher<[NewsApp.Article], any Error> {
         let source = Source(name: "Test Source")
         let articles = [
             Article(
@@ -66,15 +66,15 @@ class NewsRepositoryMock: NewsRepository {
     
     func saveFavoriteArticle(_ article: NewsApp.Article) -> AnyPublisher<Void, any Error> {
         return Just(())
-                   .setFailureType(to: Error.self)
-                   .eraseToAnyPublisher()
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
     
-    func getFavoriteArticles() -> AnyPublisher<[NewsApp.FavoriteArticle], any Error> {
+    func getFavoriteArticles() -> AnyPublisher<[NewsApp.Article], any Error> {
         return Just([])
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
-            }
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
     
     func searchArticles(query: String, categories: [String]) -> AnyPublisher<[NewsApp.Article], any Error> {
         return Just([])

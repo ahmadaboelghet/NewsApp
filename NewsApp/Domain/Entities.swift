@@ -12,6 +12,7 @@ struct NewsResponse: Codable {
 }
 
 struct Article: Codable {
+    var id = UUID() // Add a unique identifier
     let title: String?
     let publishedAt: String?
     let urlToImage: String?

@@ -1,3 +1,10 @@
+//
+//  OnboardingViewController.swift
+//  NewsApp
+//
+//  Created by Ahmad Aboelghet on 06/06/2024.
+//
+
 import UIKit
 
 class OnboardingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource {

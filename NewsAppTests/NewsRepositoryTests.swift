@@ -32,7 +32,7 @@ class NewsRepositoryTests: XCTestCase {
         let expectation = self.expectation(description: "Fetch headlines from repository")
         var articles: [Article] = []
 
-        repository.fetchHeadlines(country: "us", categories: ["business"])
+        repository.getHeadlines(country: "us", categories: ["business"])
             .sink(receiveCompletion: { completion in
                 if case .failure(let error) = completion {
                     XCTFail("Failed with error: \(error)")

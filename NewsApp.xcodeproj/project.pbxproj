@@ -16,7 +16,7 @@
 		48DA30932C12013900E26FC5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 48DA30922C12013900E26FC5 /* Alamofire */; };
 		48DA309F2C12052700E26FC5 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA309E2C12052700E26FC5 /* APIService.swift */; };
 		48DA30A12C12062A00E26FC5 /* NewsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30A02C12062A00E26FC5 /* NewsRepository.swift */; };
-		48DA30A42C1206AF00E26FC5 /* FavoriteArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30A32C1206AF00E26FC5 /* FavoriteArticle.swift */; };
+		48DA30A42C1206AF00E26FC5 /* RealmArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30A32C1206AF00E26FC5 /* RealmArticle.swift */; };
 		48DA30A62C1207B800E26FC5 /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30A52C1207B800E26FC5 /* Entities.swift */; };
 		48DA30A92C12083000E26FC5 /* FetchHeadlinesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30A82C12083000E26FC5 /* FetchHeadlinesUseCase.swift */; };
 		48DA30AD2C1208EB00E26FC5 /* GetFavoriteArticlesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30AC2C1208EB00E26FC5 /* GetFavoriteArticlesUseCase.swift */; };
@@ -35,6 +35,7 @@
 		48DA30DC2C134A2D00E26FC5 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30DB2C134A2D00E26FC5 /* SearchResultCell.swift */; };
 		48DA30DF2C134A8800E26FC5 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30DE2C134A8800E26FC5 /* UIImageView.swift */; };
 		48DA30E22C1353D400E26FC5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 48DA30E12C1353D400E26FC5 /* RealmSwift */; };
+		48DA30E72C13C9AB00E26FC5 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30E62C13C9AB00E26FC5 /* FavoritesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +68,7 @@
 		48DA30842C11FF1200E26FC5 /* NewsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		48DA309E2C12052700E26FC5 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		48DA30A02C12062A00E26FC5 /* NewsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRepository.swift; sourceTree = "<group>"; };
-		48DA30A32C1206AF00E26FC5 /* FavoriteArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteArticle.swift; sourceTree = "<group>"; };
+		48DA30A32C1206AF00E26FC5 /* RealmArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmArticle.swift; sourceTree = "<group>"; };
 		48DA30A52C1207B800E26FC5 /* Entities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
 		48DA30A82C12083000E26FC5 /* FetchHeadlinesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchHeadlinesUseCase.swift; sourceTree = "<group>"; };
 		48DA30AC2C1208EB00E26FC5 /* GetFavoriteArticlesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFavoriteArticlesUseCase.swift; sourceTree = "<group>"; };
@@ -85,6 +86,7 @@
 		48DA30D82C1234D600E26FC5 /* SearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
 		48DA30DB2C134A2D00E26FC5 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		48DA30DE2C134A8800E26FC5 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		48DA30E62C13C9AB00E26FC5 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,7 +199,7 @@
 		48DA30A22C12069200E26FC5 /* RealmModels */ = {
 			isa = PBXGroup;
 			children = (
-				48DA30A32C1206AF00E26FC5 /* FavoriteArticle.swift */,
+				48DA30A32C1206AF00E26FC5 /* RealmArticle.swift */,
 			);
 			path = RealmModels;
 			sourceTree = "<group>";
@@ -226,9 +228,10 @@
 			isa = PBXGroup;
 			children = (
 				48DA30CA2C12309E00E26FC5 /* Cells */,
-				48DA30C12C1222A300E26FC5 /* SearchController */,
-				48DA30BA2C12205800E26FC5 /* MainController */,
 				48DA30B52C121F7300E26FC5 /* OnboardingController */,
+				48DA30BA2C12205800E26FC5 /* MainController */,
+				48DA30C12C1222A300E26FC5 /* SearchController */,
+				48DA30E52C13C97600E26FC5 /* FavoritesController */,
 				48DA306C2C11FF1200E26FC5 /* LaunchScreen.storyboard */,
 			);
 			path = View;
@@ -308,6 +311,14 @@
 				48DA30DE2C134A8800E26FC5 /* UIImageView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		48DA30E52C13C97600E26FC5 /* FavoritesController */ = {
+			isa = PBXGroup;
+			children = (
+				48DA30E62C13C9AB00E26FC5 /* FavoritesViewController.swift */,
+			);
+			path = FavoritesController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -453,11 +464,12 @@
 				48DA30B32C120AD600E26FC5 /* SaveFavoriteArticleUseCase.swift in Sources */,
 				48DA30D12C1230FC00E26FC5 /* HeadlineTableViewCell.swift in Sources */,
 				48DA30622C11FF1000E26FC5 /* AppDelegate.swift in Sources */,
-				48DA30A42C1206AF00E26FC5 /* FavoriteArticle.swift in Sources */,
+				48DA30A42C1206AF00E26FC5 /* RealmArticle.swift in Sources */,
 				48DA30DC2C134A2D00E26FC5 /* SearchResultCell.swift in Sources */,
 				48DA309F2C12052700E26FC5 /* APIService.swift in Sources */,
 				48DA30C92C122F9D00E26FC5 /* SearchViewModel.swift in Sources */,
 				48DA30A62C1207B800E26FC5 /* Entities.swift in Sources */,
+				48DA30E72C13C9AB00E26FC5 /* FavoritesViewController.swift in Sources */,
 				48DA30DF2C134A8800E26FC5 /* UIImageView.swift in Sources */,
 				48DA30642C11FF1000E26FC5 /* SceneDelegate.swift in Sources */,
 				48DA30C52C1222E200E26FC5 /* SearchViewController.swift in Sources */,
