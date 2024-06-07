@@ -15,7 +15,7 @@ class SaveFavoriteArticleUseCase {
         self.repository = repository
     }
 
-    func execute(article: Article) {
-        repository.saveFavorite(article: article)
+    func execute(article: Article) -> AnyPublisher<Void, Error> {
+        return repository.saveFavoriteArticle(article)
     }
 }

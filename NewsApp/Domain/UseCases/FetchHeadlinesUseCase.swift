@@ -5,7 +5,6 @@
 //  Created by Ahmad Aboelghet on 06/06/2024.
 //
 
-import Foundation
 import Combine
 
 class FetchHeadlinesUseCase {
@@ -16,6 +15,6 @@ class FetchHeadlinesUseCase {
     }
 
     func execute(country: String, categories: [String]) -> AnyPublisher<[Article], Error> {
-        return repository.getHeadlines(for: country, categories: categories)
+        return repository.fetchHeadlines(country: country, categories: categories)
     }
 }

@@ -22,15 +22,32 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     }
 
     private func setupUI() {
-        view.addSubview(searchBar)
-        view.addSubview(tableView)
+        view.backgroundColor = .white
 
+        // Configure search bar
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.placeholder = NSLocalizedString("search_placeholder", comment: "Placeholder for the search bar")
         searchBar.delegate = self
-        tableView.delegate = self
+        view.addSubview(searchBar)
+
+        // Configure and add table view
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
         tableView.dataSource = self
-        tableView.register(HeadlineTableViewCell.self, forCellReuseIdentifier: "HeadlineCell")
-        
-        // Set constraints for searchBar and tableView
+        tableView.delegate = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SearchResultCell")
+
+        // Set constraints
+        NSLayoutConstraint.activate([
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+
+            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 
     private func bindViewModel() {
@@ -54,8 +71,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HeadlineCell", for: indexPath) as! HeadlineTableViewCell
-        cell.configure(with: viewModel.searchResults[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath)
+        let article = viewModel.searchResults[indexPath.row]
+        cell.textLabel?.text = article.title
         return cell
     }
 

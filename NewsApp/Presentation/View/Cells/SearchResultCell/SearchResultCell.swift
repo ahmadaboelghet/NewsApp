@@ -1,18 +1,18 @@
 //
-//  HeadlineTableViewCell.swift
+//  SearchResultCell.swift
 //  NewsApp
 //
-//  Created by Ahmad Aboelghet on 06/06/2024.
+//  Created by Ahmad Aboelghet on 07/06/2024.
 //
 
 import UIKit
 
-class HeadlineCell: UITableViewCell {
-
+class SearchResultCell: UITableViewCell {
+    
     // UI elements
     let titleLabel = UILabel()
     let dateLabel = UILabel()
-    let headlineImageView = UIImageView()
+    let resultImageView = UIImageView()
     let sourceLabel = UILabel()
     let descriptionLabel = UILabel()
 
@@ -38,12 +38,12 @@ class HeadlineCell: UITableViewCell {
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(dateLabel)
 
-        // Configure headlineImageView
-        headlineImageView.contentMode = .scaleAspectFill
-        headlineImageView.clipsToBounds = true
-        headlineImageView.layer.cornerRadius = 8
-        headlineImageView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(headlineImageView)
+        // Configure resultImageView
+        resultImageView.contentMode = .scaleAspectFill
+        resultImageView.clipsToBounds = true
+        resultImageView.layer.cornerRadius = 8
+        resultImageView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(resultImageView)
 
         // Configure sourceLabel
         sourceLabel.font = UIFont.systemFont(ofSize: 12)
@@ -60,35 +60,35 @@ class HeadlineCell: UITableViewCell {
 
         // Set constraints
         NSLayoutConstraint.activate([
-            headlineImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            headlineImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            headlineImageView.widthAnchor.constraint(equalToConstant: 80),
-            headlineImageView.heightAnchor.constraint(equalToConstant: 80),
+            resultImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            resultImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            resultImageView.widthAnchor.constraint(equalToConstant: 80),
+            resultImageView.heightAnchor.constraint(equalToConstant: 80),
 
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            titleLabel.leadingAnchor.constraint(equalTo: headlineImageView.trailingAnchor, constant: 8),
+            titleLabel.leadingAnchor.constraint(equalTo: resultImageView.trailingAnchor, constant: 8),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
 
             dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
-            dateLabel.leadingAnchor.constraint(equalTo: headlineImageView.trailingAnchor, constant: 8),
+            dateLabel.leadingAnchor.constraint(equalTo: resultImageView.trailingAnchor, constant: 8),
 
             sourceLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 4),
-            sourceLabel.leadingAnchor.constraint(equalTo: headlineImageView.trailingAnchor, constant: 8),
+            sourceLabel.leadingAnchor.constraint(equalTo: resultImageView.trailingAnchor, constant: 8),
 
             descriptionLabel.topAnchor.constraint(equalTo: sourceLabel.bottomAnchor, constant: 4),
-            descriptionLabel.leadingAnchor.constraint(equalTo: headlineImageView.trailingAnchor, constant: 8),
+            descriptionLabel.leadingAnchor.constraint(equalTo: resultImageView.trailingAnchor, constant: 8),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
     }
 
-    func configure(with headline: Article) {
-        titleLabel.text = headline.title
-        dateLabel.text = headline.publishedAt
-        sourceLabel.text = headline.source.name
-        descriptionLabel.text = headline.description
-        if let url = URL(string: headline.urlToImage ?? "") {
-            headlineImageView.loadImage(from: url)
+    func configure(with article: Article) {
+        titleLabel.text = article.title
+        dateLabel.text = article.publishedAt
+        sourceLabel.text = article.source.name
+        descriptionLabel.text = article.description
+        if let url = URL(string: article.urlToImage ?? "") {
+            resultImageView.loadImage(from: url)
         }
     }
 }

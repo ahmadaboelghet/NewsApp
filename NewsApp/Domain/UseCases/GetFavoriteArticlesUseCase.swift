@@ -15,7 +15,7 @@ class GetFavoriteArticlesUseCase {
         self.repository = repository
     }
 
-    func execute() -> [Article] {
-        return repository.getFavorites()
+    func execute() -> AnyPublisher<[FavoriteArticle], Error> {
+        return repository.getFavoriteArticles()
     }
 }
