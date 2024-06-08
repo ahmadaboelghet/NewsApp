@@ -36,6 +36,7 @@
 		48DA30DF2C134A8800E26FC5 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30DE2C134A8800E26FC5 /* UIImageView.swift */; };
 		48DA30E22C1353D400E26FC5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 48DA30E12C1353D400E26FC5 /* RealmSwift */; };
 		48DA30E72C13C9AB00E26FC5 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DA30E62C13C9AB00E26FC5 /* FavoritesViewController.swift */; };
+		48DA30EF2C14DF1100E26FC5 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 48DA30EE2C14DF1100E26FC5 /* IQKeyboardManagerSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 			files = (
 				48DA30E22C1353D400E26FC5 /* RealmSwift in Frameworks */,
 				48DA30932C12013900E26FC5 /* Alamofire in Frameworks */,
+				48DA30EF2C14DF1100E26FC5 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +342,7 @@
 			packageProductDependencies = (
 				48DA30922C12013900E26FC5 /* Alamofire */,
 				48DA30E12C1353D400E26FC5 /* RealmSwift */,
+				48DA30EE2C14DF1100E26FC5 /* IQKeyboardManagerSwift */,
 			);
 			productName = NewsApp;
 			productReference = 48DA305E2C11FF1000E26FC5 /* NewsApp.app */;
@@ -416,6 +419,7 @@
 			packageReferences = (
 				48DA30912C12013900E26FC5 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				48DA30E02C1353D400E26FC5 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				48DA30ED2C14DF1100E26FC5 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 48DA305F2C11FF1000E26FC5 /* Products */;
 			projectDirPath = "";
@@ -837,6 +841,14 @@
 				kind = branch;
 			};
 		};
+		48DA30ED2C14DF1100E26FC5 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -849,6 +861,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 48DA30E02C1353D400E26FC5 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		48DA30EE2C14DF1100E26FC5 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 48DA30ED2C14DF1100E26FC5 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

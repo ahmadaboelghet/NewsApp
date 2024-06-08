@@ -11,12 +11,12 @@ import Combine
 
 class NewsRepositoryTests: XCTestCase {
     var repository: NewsRepositoryImpl!
-    var apiService: APIServiceMock!
+    var apiService: MockAPIService!
     var cancellables: Set<AnyCancellable>!
 
     override func setUp() {
         super.setUp()
-        apiService = APIServiceMock()
+        apiService = MockAPIService()
         repository = NewsRepositoryImpl(apiService: apiService)
         cancellables = []
     }
@@ -48,40 +48,40 @@ class NewsRepositoryTests: XCTestCase {
     }
 }
 
-import Combine
-
-class APIServiceMock: APIService {
-    override func fetchHeadlines(for country: String, categories: [String]?) -> AnyPublisher<[Article], any Error> {
-        let source = Source(name: "Test Source")
-        let articles = [
-            Article(
-                title: "Test Article",
-                publishedAt: "2024-06-06T12:00:00Z",
-                urlToImage: "https://test.com/image.jpg",
-                source: source,
-                description: "This is a test article.",
-                url: "https://test.com"
-            )
-        ]
-        return Just(articles)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-    
-    override func searchArticles(query: String, categories: [String]?) -> AnyPublisher<[Article], Error> {
-            let source = Source(name: "Test Source")
-            let articles = [
-                Article(
-                    title: "Test Article",
-                    publishedAt: "2024-06-06T12:00:00Z",
-                    urlToImage: "https://test.com/image.jpg",
-                    source: source,
-                    description: "This is a test article.",
-                    url: "https://test.com"
-                )
-            ]
-            return Just(articles)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
-        }
-}
+//import Combine
+//
+//class APIServiceMock: APIService {
+//    override func fetchHeadlines(for country: String, categories: [String]?) -> AnyPublisher<[Article], any Error> {
+//        let source = Source(name: "Test Source")
+//        let articles = [
+//            Article(
+//                title: "Test Article",
+//                publishedAt: "2024-06-06T12:00:00Z",
+//                urlToImage: "https://test.com/image.jpg",
+//                source: source,
+//                description: "This is a test article.",
+//                url: "https://test.com"
+//            )
+//        ]
+//        return Just(articles)
+//            .setFailureType(to: Error.self)
+//            .eraseToAnyPublisher()
+//    }
+//    
+//    override func searchArticles(query: String, categories: [String]?) -> AnyPublisher<[Article], Error> {
+//            let source = Source(name: "Test Source")
+//            let articles = [
+//                Article(
+//                    title: "Test Article",
+//                    publishedAt: "2024-06-06T12:00:00Z",
+//                    urlToImage: "https://test.com/image.jpg",
+//                    source: source,
+//                    description: "This is a test article.",
+//                    url: "https://test.com"
+//                )
+//            ]
+//            return Just(articles)
+//                .setFailureType(to: Error.self)
+//                .eraseToAnyPublisher()
+//        }
+//}

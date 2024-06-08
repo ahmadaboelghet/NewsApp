@@ -17,7 +17,7 @@ class SearchViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         repository = NewsRepositoryMock()
-        viewModel = SearchViewModel(searchArticlesUseCase: SearchArticlesUseCase(repository: repository))
+        viewModel = SearchViewModel(searchArticlesUseCase: SearchArticlesUseCase(repository: repository), saveFavoriteArticleUseCase: SaveFavoriteArticleUseCase(repository: repository), getFavoriteArticlesUseCase: GetFavoriteArticlesUseCase(repository: repository))
         cancellables = []
     }
 

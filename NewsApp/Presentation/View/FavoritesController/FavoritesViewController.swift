@@ -9,16 +9,22 @@ import UIKit
 import Combine
 
 class FavoritesViewController: UIViewController {
-    private var viewModel: MainViewModel
+    private var mainviewModel: MainViewModel?
+    private var searchViewModel: SearchViewModel?
     private var cancellables = Set<AnyCancellable>()
 
     private let tableView = UITableView()
 
-    init(viewModel: MainViewModel) {
-        self.viewModel = viewModel
+    init(mainviewModel: MainViewModel) {
+        self.mainviewModel = mainviewModel
         super.init(nibName: nil, bundle: nil)
     }
 
+    init(searchViewModel: SearchViewModel) {
+        self.searchViewModel = searchViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -27,7 +33,8 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         bindViewModel()
-        viewModel.fetchFavoriteArticles()
+        mainviewModel?.fetchFavoriteArticles()
+        searchViewModel?.fetchFavoriteArticles()
     }
 
     private func setupUI() {
@@ -50,31 +57,58 @@ class FavoritesViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        viewModel.$favoriteArticles
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.tableView.reloadData()
-            }
-            .store(in: &cancellables)
+        if let searchViewModel = searchViewModel {
+            searchViewModel.$favoriteArticles
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in
+                    self?.tableView.reloadData()
+                }
+                .store(in: &cancellables)
+        } else if let mainViewModel = mainviewModel {
+            mainViewModel.$favoriteArticles
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in
+                    self?.tableView.reloadData()
+                }
+                .store(in: &cancellables)
+        }
     }
 }
 
 extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.favoriteArticles.count
+        if let searchViewModel = searchViewModel {
+            return searchViewModel.favoriteArticles.count
+        } else if let mainViewModel = mainviewModel {
+            return mainViewModel.favoriteArticles.count
+        }else {
+            return 0
+        }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HeadlineCell", for: indexPath) as! HeadlineCell
-        let article = viewModel.favoriteArticles[indexPath.row]
-        cell.configure(with: article)
+        if let searchViewModel = searchViewModel {
+            let article = searchViewModel.favoriteArticles[indexPath.row]
+            cell.configure(with: article)
+        } else if let mainViewModel = mainviewModel {
+            let article = mainViewModel.favoriteArticles[indexPath.row]
+            cell.configure(with: article)
+        }
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let article = viewModel.favoriteArticles[indexPath.row]
-        if let url = URL(string: article.url ?? "") {
-            UIApplication.shared.open(url)
+        if let searchViewModel = searchViewModel {
+            let article = searchViewModel.favoriteArticles[indexPath.row]
+            if let url = URL(string: article.url ?? "") {
+                UIApplication.shared.open(url)
+            }
+        } else if let mainViewModel = mainviewModel {
+            let article = mainViewModel.favoriteArticles[indexPath.row]
+            if let url = URL(string: article.url ?? "") {
+                UIApplication.shared.open(url)
+            }
         }
     }
 }

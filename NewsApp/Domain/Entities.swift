@@ -11,7 +11,7 @@ struct NewsResponse: Codable {
     let articles: [Article]
 }
 
-struct Article: Codable {
+struct Article: Codable, Equatable {
     var id = UUID() // Add a unique identifier
     let title: String?
     let publishedAt: String?
@@ -21,6 +21,6 @@ struct Article: Codable {
     let url: String?
 }
 
-struct Source: Codable {
+struct Source: Codable, Equatable {
     let name: String?
 }

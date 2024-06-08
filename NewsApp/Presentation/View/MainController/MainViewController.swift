@@ -85,7 +85,7 @@ class MainViewController: UIViewController {
     }
 
     @objc private func navigateToSearch() {
-        let searchVM = SearchViewModel(searchArticlesUseCase: SearchArticlesUseCase(repository: NewsRepositoryImpl(apiService: APIService())))
+        let searchVM = SearchViewModel(searchArticlesUseCase: SearchArticlesUseCase(repository: NewsRepositoryImpl(apiService: APIService())), saveFavoriteArticleUseCase: SaveFavoriteArticleUseCase(repository: NewsRepositoryImpl(apiService: APIService())), getFavoriteArticlesUseCase: GetFavoriteArticlesUseCase(repository: NewsRepositoryImpl(apiService: APIService())))
         let searchVC = SearchViewController()
         searchVC.viewModel = searchVM
         navigationController?.pushViewController(searchVC, animated: true)
@@ -93,7 +93,7 @@ class MainViewController: UIViewController {
 
     @objc private func showFavorites() {
         viewModel.fetchFavoriteArticles()
-        let FavoritesVC = FavoritesViewController(viewModel: viewModel)
+        let FavoritesVC = FavoritesViewController(mainviewModel: viewModel)
         navigationController?.pushViewController(FavoritesVC, animated: true)
     }
 }
@@ -117,7 +117,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 
-    // Updated to use UIContextualAction instead of UITableViewRowAction
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let favoriteAction = UIContextualAction(style: .normal, title: "Favorite") { [weak self] _, _, completionHandler in
             guard let self = self else { return }
